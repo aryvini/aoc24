@@ -4,9 +4,6 @@
 import numpy as np
 import pandas as pd
 
-
-
-
 with open('./day1.txt','r') as file:
     lines = file.readlines()
 
