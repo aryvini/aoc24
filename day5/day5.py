@@ -2,8 +2,6 @@ import re
 from functools import reduce
 import itertools
 
-from sqlalchemy import false
-
 rules: list[tuple[int, int]]
 updates: list[int]
 
