@@ -99,30 +99,23 @@ def find_antinodes_pt2(field, antennas):
         for comb in combs:
             ant1,ant2 = comb
             dr,dc = get_dist_dir(ant1,ant2)
-            palce_antinode(antinode_field,ant1)
-            palce_antinode(antinode_field,ant2)
-            antinodes.add(ant1)
-            antinodes.add(ant2)
-                # Place antinodes in multiples of the distance until we fail!
+            # Place antinodes in multiples of the distance until we fail!
             # try individually for each direction
             fail = False
-            atLeast1 = False
-            n = 1
+            n = 0
             while not fail:
                 an1r = ant2[0] + dr*n
                 an1c = ant2[1] + dc*n
                 if palce_antinode(antinode_field,(an1r,an1c)) is not False:
                     # if this is valid, make the position of the antenna also an antinode
                     antinodes.add((an1r,an1c))
-                    atLeast1 = True
                     n += 1
                 else:
                     fail = True
 
 
             fail = False
-            n = 1
-            atLeast2 = False
+            n = 0
             while not fail:
                 an2r = ant1[0] + dr *(n* -1) #invert direction
                 an2c = ant1[1] + dc *(n * -1) #inver direction
@@ -130,16 +123,8 @@ def find_antinodes_pt2(field, antennas):
                     # if this is valid, make the position of the antenna also an antinode
                     antinodes.add((an2r,an2c))
                     n += 1
-                    atLeast2 = True
                 else:
                     fail = True
-
-
-            # if atLeast2 or atLeast1:
-            #     palce_antinode(antinode_field,ant1)
-            #     palce_antinode(antinode_field,ant2)
-            #     antinodes.add(ant1)
-            #     antinodes.add(ant2)
             pass
 
     return antinodes,antinode_field
